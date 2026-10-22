@@ -36,8 +36,8 @@
     </div>
 
     <script>
-        // ВСТАВЬ КОРОТКУЮ ССЫЛКУ ИЗ ШАГА 1 МЕЖДУ КАВЫЧКАМИ
-        const photoUrl = 'https://ibb.co/JFCdZv5S';
+        // Загружаем картинку локально из твоего же репозитория на GitHub
+        const photoUrl = 'photo.jpg';
 
         const phrases = ["Я тебя люблю", "I love you", "Te amo", "Je t'aime", "Ti amo", "❤️", "Юлиана"];
         const canvas = document.getElementById('galaxyCanvas');
@@ -68,7 +68,6 @@
 
         function preparePortrait() {
             const img = new Image();
-            img.crossOrigin = "Anonymous"; // Разрешаем загрузку с фотохостинга
             img.src = photoUrl;
             img.onload = function() {
                 const tempCanvas = document.createElement('canvas');
@@ -164,8 +163,10 @@
         }
 
         function assemblePortrait() {
+            cancelAnimationFrame(animationFrame); // Полностью останавливаем прошлую анимацию галактики
             mode = 'portrait';
             document.getElementById('action-btn').style.display = 'none';
+            animate(); // Запускаем цикл сборки портрета с чистой памятью
         }
     </script>
 </body>
